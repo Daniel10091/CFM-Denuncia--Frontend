@@ -1,0 +1,116 @@
+{
+  "ufs": [
+    {
+      "id": "/",
+      "name": "Selecionar regional"
+    },
+    {
+      "id": "ac",
+      "name": "Acre"
+    },
+    {
+      "id": "al",
+      "name": "Alagoas"
+    },
+    {
+      "id": "am",
+      "name": "Amazonas"
+    },
+    {
+      "id": "ap",
+      "name": "Amapá"
+    },
+    {
+      "id": "ba",
+      "name": "Bahia"
+    },
+    {
+      "id": "ce",
+      "name": "Ceará"
+    },
+    {
+      "id": "df",
+      "name": "Distrito Federal"
+    },
+    {
+      "id": "es",
+      "name": "Espírito Santo"
+    },
+    {
+      "id": "go",
+      "name": "Goiás"
+    },
+    {
+      "id": "ma",
+      "name": "Maranhão"
+    },
+    {
+      "id": "mg",
+      "name": "Minas Gerais"
+    },
+    {
+      "id": "ms",
+      "name": "Mato Grosso do Sul"
+    },
+    {
+      "id": "mt",
+      "name": "Mato Grosso"
+    },
+    {
+      "id": "pa",
+      "name": "Pará"
+    },
+    {
+      "id": "pb",
+      "name": "Paraíba"
+    },
+    {
+      "id": "pe",
+      "name": "Pernambuco"
+    },
+    {
+      "id": "pi",
+      "name": "Piauí"
+    },
+    {
+      "id": "pr",
+      "name": "Paraná"
+    },
+    {
+      "id": "rj",
+      "name": "Rio de Janeiro"
+    },
+    {
+      "id": "rn",
+      "name": "Rio Grande do Norte"
+    },
+    {
+      "id": "ro",
+      "name": "Rondônia"
+    },
+    {
+      "id": "rr",
+      "name": "Roraima"
+    },
+    {
+      "id": "rs",
+      "name": "Rio Grande do Sul"
+    },
+    {
+      "id": "sc",
+      "name": "Santa Catarina"
+    },
+    {
+      "id": "se",
+      "name": "Sergipe"
+    },
+    {
+      "id": "sp",
+      "name": "São Paulo"
+    },
+    {
+      "id": "to",
+      "name": "Tocantins"
+    }
+  ]
+}

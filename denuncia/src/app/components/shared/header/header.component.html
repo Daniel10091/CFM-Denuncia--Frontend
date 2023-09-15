@@ -1,0 +1,10 @@
+<header class="page-navbar">
+  <div class="navbar-row">
+    <div class="logo">
+      <img src="../assets/images/logos/br.png" alt="CFM - Conselho Federal de Medicina">
+    </div>
+    <div class="options p-fluid">
+      <p-dropdown class="p-element p-inputwrapper ng-valid ng-touched p-inputwrapper-filled ng-dirty" [options]="ufs" [(ngModel)]="target" optionLabel="name" [filter]="true" filterBy="name" (onChange)="onChange($event)"></p-dropdown>
+    </div>
+  </div>
+</header>
