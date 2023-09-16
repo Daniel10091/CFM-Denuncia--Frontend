@@ -15,6 +15,7 @@ import { HeaderComponent } from './components/shared/header/header.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { HomeComponent } from './views/home/home.component';
 import { StatesModule } from './views/states/states.module';
+import { FooterComponent } from './components/shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { StatesModule } from './views/states/states.module';
     HeaderComponent,
     HomeComponent,
     // Components
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
