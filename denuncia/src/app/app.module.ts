@@ -15,6 +15,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { HomeComponent } from './views/home/home.component';
+import { StatesComponent } from './views/states/states.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HomeComponent } from './views/home/home.component';
     HeaderComponent,
     HomeComponent,
     // Components
-    HeaderComponent
+    HeaderComponent,
+    StatesComponent
   ],
   imports: [
     CommonModule,

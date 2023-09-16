@@ -4,23 +4,23 @@ import { RouterModule } from '@angular/router';
 import { ACComponent } from './ac/ac.component';
 import { ALComponent } from './al/al.component';
 import { AMComponent } from './am/am.component';
-import { ComplaintRoutingModule } from './complaint-routing.module';
-import { ComplaintComponent } from './complaint.component';
+import { StatesRoutingModule } from './states-routing.module';
+import { StatesComponent } from './states.component';
 
 @NgModule({
   declarations: [
     ALComponent,
     ACComponent,
     AMComponent,
-    ComplaintComponent
+    StatesComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
-    ComplaintRoutingModule
+    StatesRoutingModule
   ],
   exports: [
-    ComplaintComponent
+    StatesComponent
   ]
 })
-export class ComplaintModule { }
+export class StatesModule { }

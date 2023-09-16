@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-complaint',
-  templateUrl: './complaint.component.html',
-  styleUrls: ['./complaint.component.scss']
+  selector: 'app-states',
+  templateUrl: './states.component.html',
+  styleUrls: ['./states.component.scss']
 })
-export class ComplaintComponent implements OnInit {
+export class StatesComponent implements OnInit {
   
   uf?: string = '';
 
