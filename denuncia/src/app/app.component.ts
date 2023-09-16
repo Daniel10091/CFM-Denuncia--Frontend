@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UF } from './models/UF';
+import { PlatformLocation } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +10,33 @@ import { UF } from './models/UF';
 })
 export class AppComponent implements OnInit {
 
-  ufs?: UF[] = [];
-  target: any;
+  ufs: UF[] = [];
+  target: UF;
 
   currentUrl: string;
+
+  // urlParamsArray: any[] = [];
+
+  constructor(
+    private router: Router,
+    location: PlatformLocation
+  ) {
+    location.onPopState(() => {
+      this.ngOnInit();
+    });
+  }
+
+  async ngOnInit(): Promise<void> {
+    if (this.ufs.length == 0) await this.getUfs();
+      
+    setTimeout(() => {
+      this.paramsToObject(window.location.pathname);
+    }, 100);
+  }
   
+  /**
+   * Get UFs
+   */
   async getUfs() {
     await fetch('assets/data/ufs.json')
     .then(res => res.json())
@@ -21,41 +44,71 @@ export class AppComponent implements OnInit {
       this.ufs = json.ufs;
     });
   }
-
-  constructor(
-    private router: Router
-  ) { }
-
-  async ngOnInit() {
-    await this.getUfs();
-
-    this.target = window.location.pathname.split('/')[2] || this.ufs[0].id;
-    
-    // this.router.navigate([`/denuncia/${this.selectedUf}`]);
-
-    this.currentUrl = window.location.pathname;
-  }
   
-  navigateTo(value: string) {
-    if (value && value !== '/') {
-      // this.ngOnInit();
-      this.target = value;
-      this.router.navigate([`/denuncia/${this.target}`]);
+  /**
+   * Navigate to a specific location
+   *  
+   * @param {string} value
+   */
+  private navigateTo(value: any): void {
+    // this.target = value;
+
+    if (value && value.id != '/') {
+      this.router.navigate([`/denuncia/${value.id}`]);
+    } else if (value.id == '/') {
+      this.router.navigate([``]);
     } else {
-      this.router.navigate([`/`]);
+      this.router.navigate([`/404`]);
     }
   }
 
+  /**
+   * Change UF
+   * 
+   * @param event 
+   */
   changeUf = (event: any): void => {
-    console.log(event.value.name);
-    // this.navigateTo(event.value.id);
-    if (event.value && event.value !== '/') {
-      // this.ngOnInit();
-      this.target = event.value.id;
-      this.router.navigate([`/denuncia/${this.target}`]);
+    this.navigateTo(event.value);
+
+    setTimeout(() => {
+      this.ngOnInit();
+      this.currentUrl = window.location.pathname;
+      console.log(this.currentUrl);
+    }, 100);
+  }
+
+  /**
+   * Transform URL params to object
+   * 
+   * @param urlParams 
+   */
+  private paramsToObject(urlParams: any): void {
+    // var urlParamsArray: any[] = [];
+
+    // urlParams.split("/").reduce(function(obj, str, index) {
+    //   let strParts = str.split("/");
+    //   if (strParts[0]) {
+    //     obj[strParts[0].replace(/\s+/g, '')] = strParts[0].trim();
+    //     urlParamsArray.push(strParts[0].replace(/\s+/g, ''));
+    //   }
+    //   return obj;
+    // }, {});
+
+    // console.log('> urlParams: ' + urlParams);
+
+    if (urlParams == '/') {
+      this.target = this.ufs[0];
+      localStorage.setItem('target', JSON.stringify(this.ufs[0]));
     } else {
-      this.router.navigate([`/`]);
+      this.ufs.filter((uf: UF) => {
+        if (uf.id == urlParams.split('/')[2]) {
+          this.target = uf;
+          localStorage.setItem('target', JSON.stringify(uf));
+        }
+      });
     }
+
+    // this.urlParamsArray = urlParamsArray;
   }
   
 }

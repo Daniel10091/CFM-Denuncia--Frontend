@@ -9,12 +9,20 @@ import { UF } from 'src/app/models/UF';
 export class HeaderComponent implements OnInit {
 
   @Input('ufs') ufs?: UF[];
-  @Input('target') target?: string;
+  @Input('target') target?: UF;
   @Input('onChange') onChange?: (target: any) => void;
 
   constructor() { }
 
   ngOnInit(): void {
+
+    var target = localStorage.getItem('target');
+    
+    if (target) {
+      this.target = JSON.parse(target);
+    } else {
+      this.target = this.ufs[0];
+    }
   }
 
 }

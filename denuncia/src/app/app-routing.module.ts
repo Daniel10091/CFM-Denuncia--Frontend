@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { ComplaintModule } from './views/complaint/complaint.module';
 import { HomeComponent } from './views/home/home.component';
 import { RouteErrorComponent } from './views/route-error/route-error.component';
+import { StatesModule } from './views/states/states.module';
 
 const routes: Routes = [
   { 
     path: '', 
-    redirectTo: '/', 
+    redirectTo: '', 
     pathMatch: 'full' 
   },
   { 
@@ -16,7 +16,7 @@ const routes: Routes = [
   },
   { 
     path: ':uf', 
-    loadChildren: () => ComplaintModule
+    loadChildren: () => StatesModule
   },
   {
     path: '**', 

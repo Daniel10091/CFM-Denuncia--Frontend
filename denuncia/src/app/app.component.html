@@ -1,5 +1,5 @@
 <div class="container">
-  <app-header [ufs]="ufs" [target]="target" [onChange]="changeUf"></app-header>
+  <app-header *ngIf="currentUrl != '/404'" [ufs]="ufs" [target]="target" [onChange]="changeUf"></app-header>
   <div class="container">
     <router-outlet></router-outlet>
   </div>
