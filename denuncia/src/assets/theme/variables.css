@@ -5,15 +5,28 @@
   --cfm-primary: #02986f;
   --cfm-primary-light: #03bd8b;
   --cfm-primary-dark: #00815a;
-  --cfm-secondary: #f5f5f5;
+  --cfm-secondary: #eaeef0;
   --cfm-white: #ffffff;
   --cfm-gray: #f5f5f5;
+  --cfm-gray-dark: #6c757d;
   --cfm-black: #000000;
 
-  --cfm-navbar-background-color: var(--cfm-primary);
+  /* CFM Default Fonts */
+
+  --cfm-font-family: 'Roboto', sans-serif;
+
+  /* CFM Default Fonts Colors */
+  
+  --cfm-font-gray: #535353;
+
+  --cfm-header-bg-color: var(--cfm-primary);
+
+  --cfm-footer-bg-color: var(--cfm-primary);
 
   /* CFM Default Sizes */
 
-  --cfm-navbar-height: 120px;
+  --cfm-header-height: 120px;
+
+  --cfm-footer-height: 100px;
   
 }

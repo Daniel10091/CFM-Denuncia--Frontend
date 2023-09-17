@@ -1,0 +1,6 @@
+#app-page {
+  width: 100%;
+  min-height: calc(100vh - (var(--cfm-header-height) + var(--cfm-footer-height)));
+  background-color: var(--cfm-secondary);
+  overflow: hidden;
+}

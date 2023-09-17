@@ -28,10 +28,14 @@ export class AppComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     if (this.ufs.length == 0) await this.getUfs();
-      
+
+    this.currentUrl = window.location.pathname;
+
     setTimeout(() => {
       this.paramsToObject(window.location.pathname);
     }, 100);
+  
+    this.loadTemplate();
   }
   
   /**
@@ -72,8 +76,6 @@ export class AppComponent implements OnInit {
 
     setTimeout(() => {
       this.ngOnInit();
-      this.currentUrl = window.location.pathname;
-      console.log(this.currentUrl);
     }, 100);
   }
 
@@ -109,6 +111,22 @@ export class AppComponent implements OnInit {
     }
 
     // this.urlParamsArray = urlParamsArray;
+  }
+
+  // Page loading with html template
+  loadFunction = (text: string): any => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(text);
+      }, 1000);
+    });
+  }
+
+  loadTemplate = async () => {
+    this.loadFunction('Loading...')
+    .then((res) => {
+      console.log(res);
+    });
   }
   
 }
