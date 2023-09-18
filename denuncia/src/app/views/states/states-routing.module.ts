@@ -3,13 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { ACComponent } from './ac/ac.component';
 import { ALComponent } from './al/al.component';
 import { AMComponent } from './am/am.component';
+import { RouteErrorComponent } from '../route-error/route-error.component';
 
 const routes: Routes = [
   {
     path: '',
     children:[
       {
-        path: 'ac', 
+        path: '', 
         component: ACComponent
       },
       {
@@ -20,6 +21,10 @@ const routes: Routes = [
         path: 'am', 
         component: AMComponent
       },
+      // {
+      //   path: '**', 
+      //   redirectTo: '/404'
+      // }
     ]
   }
 ];

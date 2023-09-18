@@ -1,10 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-route-error',
   templateUrl: './route-error.component.html',
   styleUrls: ['./route-error.component.scss']
 })
-export class RouteErrorComponent {
+export class RouteErrorComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  back(): void {
+    window.history.back();
+  }
 
 }

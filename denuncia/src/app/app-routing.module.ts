@@ -15,7 +15,7 @@ const routes: Routes = [
     component: HomeComponent 
   },
   { 
-    path: ':uf', 
+    path: 'denuncia/:uf', 
     loadChildren: () => StatesModule
   },
   {

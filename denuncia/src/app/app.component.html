@@ -1,6 +1,6 @@
 <div class="container">
   <app-header *ngIf="currentUrl != '/404'" [ufs]="ufs" [target]="target" [onChange]="changeUf"></app-header>
-  <div class="container" id="app-page">
+  <div class="container {{currentUrl == '/404' ? 'page-404' : ''}}" id="app-page">
     <router-outlet></router-outlet>
   </div>
   <app-footer *ngIf="currentUrl != '/404'"></app-footer>

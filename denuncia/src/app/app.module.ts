@@ -11,6 +11,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Primeng
 import { DropdownModule } from 'primeng/dropdown';
+import { ButtonModule } from 'primeng/button';
+
+// Components
 import { HeaderComponent } from './components/shared/header/header.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { HomeComponent } from './views/home/home.component';
@@ -38,7 +41,8 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     BrowserAnimationsModule,
     
     // Primeng
-    DropdownModule
+    DropdownModule,
+    ButtonModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

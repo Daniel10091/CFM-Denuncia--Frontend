@@ -1,7 +1,24 @@
 .container {
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - var(--cfm-navbar-height));
+  .content {
+    text-align: center;
+    .title {
+      font-size: 8.8rem;
+      font-weight: 700;
+      letter-spacing: 10px;
+      transform: translateX(6px);
+      color: var(--cfm-primary);
+    }
+    .text {
+      font-size: 1.52rem;
+      font-weight: 500;
+      color: var(--cfm-font-gray);
+      margin-bottom: 2rem;
+    }
+  }
 }
