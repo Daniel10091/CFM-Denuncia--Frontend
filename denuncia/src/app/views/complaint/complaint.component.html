@@ -1,0 +1,137 @@
+<div class="container">
+  <div class="form-content">
+    <div class="title">
+      <h2>Nova Denúncia</h2>
+    </div>
+    <div class="form">
+
+      <div class="section">
+        <div class="subtitle">
+          <h2>Dados Pessoais do Denunciante</h2>
+        </div>
+        <div class="formgrid grid">
+          <div class="field p-fluid col-12 md:col-8 required">
+            <label for="name">Nome Completo</label>
+            <input pInputText pKeyFilter="int" id="name" placeholder="Seu nome" [(ngModel)]="value" />
+          </div>
+          <div class="field p-fluid col-12 md:col-4 required">
+            <label for="cpf">CPF</label>
+            <input pInputText pKeyFilter="int" id="cpf" placeholder="Seu CPF" [(ngModel)]="value" />
+          </div>
+          <div class="field p-fluid col-12 required">
+            <label for="patientName">Nome do Paciente</label>
+            <input pInputText pKeyFilter="int" id="patientName" placeholder="Nome Completo do Paciente" [(ngModel)]="value" />
+          </div>
+          <div class="field p-fluid col-12 md:col-6 required">
+            <label for="kinship">Parentesco com o paciente</label>
+            <input pInputText pKeyFilter="int" id="kinship" placeholder="Quem estava com o paciente" [(ngModel)]="value" />
+          </div>
+          <div class="field p-fluid col-12 md:col-6">
+            <label for="profession">Profissão do paciente</label>
+            <input pInputText pKeyFilter="int" id="profession" placeholder="Profissão do Paciente" [(ngModel)]="value" />
+          </div>
+          <div class="field p-fluid col-12 md:col-3 required">
+            <label for="age">Idade</label>
+            <p-inputNumber inputId="minmax" mode="decimal" id="age" [min]="0" placeholder="Sua Idade" [(ngModel)]="value"></p-inputNumber>
+          </div>
+          <div class="field p-fluid col-12 md:col-3 required">
+            <label for="maritalStatus">Estado civil</label>
+            <input pInputText pKeyFilter="int" id="maritalStatus" placeholder="Seu Estado civil" [(ngModel)]="value" />
+          </div>
+          <div class="field p-fluid col-12 md:col-3 required">
+            <label for="phone">Telefone</label>
+            <p-inputMask mask="9999-9999" id="phone" placeholder="Seu Telefone" [(ngModel)]="value"></p-inputMask>
+          </div>
+          <div class="field p-fluid col-12 md:col-3 required">
+            <label for="cellPhone">Celular</label>
+            <p-inputMask mask="(99) 99999-9999" id="cellPhone" placeholder="Seu Celular" [(ngModel)]="value"></p-inputMask>
+          </div>
+          <div class="field p-fluid col-12 md:col-6 required">
+            <label for="email">Email</label>
+            <input pInputText pKeyFilter="int" id="email" placeholder="Seu Email" [(ngModel)]="value" />
+          </div>
+          <div class="field p-fluid col-12 md:col-6 required">
+            <label for="emailConfirmation">Confirmação do Email</label>
+            <input pInputText pKeyFilter="int" id="emailConfirmation" placeholder="Confirme Seu Email" [(ngModel)]="value" />
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="subtitle">
+          <h2>Endereço Residencial do Denunciante</h2>
+        </div>
+        <div class="formgrid grid">
+          <div class="field p-fluid col-12 md:col-3 required">
+            <label for="cep">CEP</label>
+            <input pInputText pKeyFilter="int" id="cep" placeholder="Seu CEP" [(ngModel)]="value" />
+          </div>
+          <div class="field p-fluid col-12 md:col-6 required">
+            <label for="address">Endereço</label>
+            <input pInputText pKeyFilter="int" id="address" placeholder="Seu Endereço" [(ngModel)]="value" />
+          </div>
+          <div class="field p-fluid col-12 md:col-3 required">
+            <label for="number">Número/Complemento</label>
+            <input pInputText pKeyFilter="int" id="number" placeholder="Número ou Complemento" [(ngModel)]="value" />
+          </div>
+          <div class="field p-fluid col-12 md:col-3 required">
+            <label for="neighborhood">Bairro</label>
+            <input pInputText pKeyFilter="int" id="neighborhood" placeholder="Seu CEP" [(ngModel)]="value" />
+          </div>
+          <div class="field p-fluid col-12 md:col-6 required">
+            <label for="city">City</label>
+            <input pInputText pKeyFilter="int" id="address" placeholder="Cidade" [(ngModel)]="value" />
+          </div>
+          <div class="field p-fluid col-12 md:col-3 required">
+            <label for="uf">UF</label>
+            <input pInputText pKeyFilter="int" id="uf" placeholder="UF" [(ngModel)]="value" />
+          </div>
+          <div class="field p-fluid col-12 md:col-9 required">
+            <label for="cityIncident">Cidade em que ocorreu o fato</label>
+            <input pInputText pKeyFilter="int" id="cityIncident" placeholder="Cidade onde ocorreu o fato" [(ngModel)]="value" />
+          </div>
+          <div class="field p-fluid col-12 md:col-3 required">
+            <label for="cityIncident">Data do Fato</label>
+            <p-calendar dateFormat="dd.mm.yy" id="cityIncident" placeholder="Data do Fato" [(ngModel)]="value" [showIcon]="true"></p-calendar>
+          </div>
+          <div class="field p-fluid col-12 required">
+            <label for="doctorName">Nome(s) do(s) médico(s) envolvido(s) e CRM (se souber)</label>
+            <textarea rows="4" cols="30" pInputTextarea id="doctorName" [autoResize]="true"></textarea>
+          </div>
+          <div class="field p-fluid col-12 required">
+            <label for="descriptionComplaint">Descrição da denúncia</label>
+            <textarea rows="10" cols="30" pInputTextarea id="descriptionComplaint" [autoResize]="true"></textarea>
+          </div>
+          <div class="field p-fluid col-12">
+            <label for="indications">Indicação das provas e documentos apresentados na denúncia</label>
+            <textarea rows="10" cols="30" pInputTextarea id="indications" [autoResize]="true"></textarea>
+          </div>
+          <div class="field p-fluid col-12">
+            <label for="relation">Relação das testemunhas (nome, endereço completo, telefone, e-mail e CPF)</label>
+            <textarea rows="10" cols="30" pInputTextarea id="relation" [autoResize]="true"></textarea>
+          </div>
+          <div class="field p-fluid col-12 required">
+            <label for="establishmentName">Nome do Estabelecimento (Hospital, Clínica, Consultório, UPA, etc.) em que houve o atendimento</label>
+            <input pInputText pKeyFilter="int" id="establishmentName" placeholder="Nome do Estabelecimento (Hospital, Clínica, Consultório, UPA, etc.) em que houve o atendimento" [(ngModel)]="value" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="buttons">
+      <div class="grid">
+        <div class="col-12">
+          <div class="captcha">
+            <re-captcha (resolved)="resolved($event)" siteKey="6LepbP0UAAAAAJ4txXicgIKYE_GRgP6djVysEAi3"></re-captcha>
+          </div>
+        </div>
+        <div class="col-6">
+          <p-button label="Cancelar" styleClass="p-button-secondary" (onClick)="cancel()"></p-button>
+          <p-button label="{{sendButtonLabel}}" styleClass="p-button-primary" (onClick)="send()"></p-button>
+        </div>
+        <div class="col-6">
+          <p-button label="Enviar documento assinado" icon="pi pi-check" iconPos="right" styleClass="p-button-sm p-button-rounded p-button-warning"></p-button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p-toast></p-toast>
+</div>

@@ -6,16 +6,31 @@
 @import "./assets/theme/variables.css";
 
 // customer scrollbar
+
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
   background: var(--cfm-gray);
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--cfm-primary-light);
-  border: 2px solid var(--cfm-white);
+  border: 2px solid var(--cfm-gray);
   border-radius: 10px;
 }
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cfm-primary);
+}
+
+// customer selection
+
+::selection {
+  background: var(--indigo-500);
+  color: var(--cfm-white);
+}
+
+// global styles
 
 * {
   margin: 0;

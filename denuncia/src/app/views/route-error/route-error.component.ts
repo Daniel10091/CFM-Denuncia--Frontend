@@ -15,5 +15,9 @@ export class RouteErrorComponent implements OnInit {
   back(): void {
     window.history.back();
   }
+  
+  navigateToHome(): void {
+    window.location.href = '/';
+  }
 
 }

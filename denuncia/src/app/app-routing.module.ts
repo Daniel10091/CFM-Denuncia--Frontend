@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './views/home/home.component';
 import { RouteErrorComponent } from './views/route-error/route-error.component';
 import { StatesModule } from './views/states/states.module';
+import { ComplaintComponent } from './views/complaint/complaint.component';
 
 const routes: Routes = [
   { 
@@ -17,6 +18,10 @@ const routes: Routes = [
   { 
     path: 'denuncia/:uf', 
     loadChildren: () => StatesModule
+  },
+  {
+    path: 'denuncia/:uf/crvirtual',
+    component: ComplaintComponent
   },
   {
     path: '**', 

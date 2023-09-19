@@ -13,4 +13,12 @@ export class ACComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  startComplaint() {
+    this.router.navigate(['/denuncia/ac/crvirtual']);
+  }
+
+  nextStageComplaint() {
+    this.router.navigate(['/denuncia/ac/crvirtual']);
+  }
+
 }

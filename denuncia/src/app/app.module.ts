@@ -12,6 +12,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Primeng
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputMaskModule } from 'primeng/inputmask';
+import { CalendarModule } from 'primeng/calendar';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ToastModule } from 'primeng/toast';
+
+// NG
+import { RecaptchaModule } from "ng-recaptcha";
 
 // Components
 import { HeaderComponent } from './components/shared/header/header.component';
@@ -19,6 +28,7 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { HomeComponent } from './views/home/home.component';
 import { StatesModule } from './views/states/states.module';
 import { FooterComponent } from './components/shared/footer/footer.component';
+import { ComplaintComponent } from './views/complaint/complaint.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +39,8 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     HomeComponent,
     // Components
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ComplaintComponent
   ],
   imports: [
     CommonModule,
@@ -37,12 +48,18 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     AppRoutingModule,
     FormsModule,
     StatesModule,
-
     BrowserAnimationsModule,
-    
     // Primeng
     DropdownModule,
-    ButtonModule 
+    ButtonModule,
+    InputTextModule,
+    InputNumberModule,
+    InputMaskModule,
+    CalendarModule,
+    InputTextareaModule,
+    ToastModule,
+    // NG
+    RecaptchaModule
   ],
   providers: [],
   bootstrap: [AppComponent]

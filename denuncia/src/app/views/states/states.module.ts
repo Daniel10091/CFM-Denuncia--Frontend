@@ -7,6 +7,9 @@ import { AMComponent } from './am/am.component';
 import { StatesRoutingModule } from './states-routing.module';
 import { StatesComponent } from './states.component';
 
+// Primeng
+import { ButtonModule } from 'primeng/button';
+
 @NgModule({
   declarations: [
     ALComponent,
@@ -17,7 +20,9 @@ import { StatesComponent } from './states.component';
   imports: [
     CommonModule,
     RouterModule,
-    StatesRoutingModule
+    StatesRoutingModule,
+    // Primeng
+    ButtonModule 
   ],
   exports: [
     StatesComponent

@@ -14,6 +14,9 @@ export class AppComponent implements OnInit {
   target: UF;
 
   currentUrl: string;
+  validUrl: boolean;
+
+  pageLoaded: boolean = false;
 
   // urlParamsArray: any[] = [];
 
@@ -32,7 +35,16 @@ export class AppComponent implements OnInit {
     this.currentUrl = window.location.pathname;
 
     setTimeout(() => {
-      this.paramsToObject(window.location.pathname);
+      this.saveParams(window.location.pathname);
+
+      this.validUrl = 
+        window.location.pathname.split('/')[1] == 'denuncia' && 
+        window.location.pathname.split('/')[2]?.length == 2  && 
+        window.location.pathname.split('/')[3] == 'crvirtual'|| 
+        window.location.pathname.split('/')[3] == undefined  ||
+        window.location.pathname == '/';
+      
+      if (!this.validUrl) this.router.navigate([`/404`]);
     }, 100);
   
     this.loadTemplate();
@@ -84,7 +96,9 @@ export class AppComponent implements OnInit {
    * 
    * @param urlParams 
    */
-  private paramsToObject(urlParams: any): void {
+  private saveParams(urlParams: any): void {
+
+    //paramsToObject()
     // var urlParamsArray: any[] = [];
 
     // urlParams.split("/").reduce(function(obj, str, index) {
@@ -113,20 +127,40 @@ export class AppComponent implements OnInit {
     // this.urlParamsArray = urlParamsArray;
   }
 
-  // Page loading with html template
+  /**
+   * Load function
+   * 
+   * @param text 
+   * @returns 
+   */
   loadFunction = (text: string): any => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(text);
-      }, 1000);
+      }, this.currentUrl == '/404' ? 500 : this.currentUrl == '/' ? 2000 : 1000);
     });
   }
 
+  /**
+   * Load template
+   */
   loadTemplate = async () => {
     this.loadFunction('Loading...')
     .then((res) => {
-      console.log(res);
+      this.pageLoaded = true;
+      // console.log(res);
     });
   }
+  
+  // function restante(salario) {
+  //   var nuBank = 248.98;
+  //   var mercadoPago = 173.73;
+  //   var inter = 244.19;
+  //   var agua = 100;
+  //   var luz = 100;
+  //   var pravaler = 410;
+
+  //   return salario - (this.mercadoPago + this.nuBank + this.inter + this.agua + this.luz + this.pravaler);
+  // }
   
 }
