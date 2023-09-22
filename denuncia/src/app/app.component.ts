@@ -153,5 +153,12 @@ export class AppComponent implements OnInit {
       // console.log(res);
     });
   }
+
+  scrollToTop = ($event: any) => {
+    console.log('scrollToTop');
+    
+    $event.preventDefault();
+    window.scrollTo(0, 0);
+  }
   
 }

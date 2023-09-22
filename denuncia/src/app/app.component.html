@@ -7,4 +7,9 @@
   <div *ngIf="!pageLoaded" class="page-load">
     <div class="spinner"></div>
   </div>
+  <div class="scroll-to-top">
+    <a href="#app-page" (onClick)="scrollToTop($event)">
+      <i class="pi pi-angle-up"></i>
+    </a>
+  </div>
 </div>
