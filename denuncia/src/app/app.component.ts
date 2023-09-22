@@ -84,7 +84,9 @@ export class AppComponent implements OnInit {
    * @param event 
    */
   changeUf = (event: any): void => {
-    this.navigateTo(event.value);
+    setTimeout(() => {
+      this.navigateTo(event.value);
+    }, 50);
 
     setTimeout(() => {
       this.ngOnInit();
@@ -151,16 +153,5 @@ export class AppComponent implements OnInit {
       // console.log(res);
     });
   }
-  
-  // function restante(salario) {
-  //   var nuBank = 248.98;
-  //   var mercadoPago = 173.73;
-  //   var inter = 244.19;
-  //   var agua = 100;
-  //   var luz = 100;
-  //   var pravaler = 410;
-
-  //   return salario - (this.mercadoPago + this.nuBank + this.inter + this.agua + this.luz + this.pravaler);
-  // }
   
 }

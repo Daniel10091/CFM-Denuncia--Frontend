@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Inclusive+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root {
+  --InclusiveSans: 'Inclusive Sans', sans-serif;
+  --Mooli: 'Mooli', sans-serif;
+  --Poppins: 'Poppins', sans-serif;
+}

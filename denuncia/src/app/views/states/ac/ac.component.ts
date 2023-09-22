@@ -14,11 +14,17 @@ export class ACComponent implements OnInit {
   }
 
   startComplaint() {
-    this.router.navigate(['/denuncia/ac/crvirtual']);
+    setTimeout(() => {
+      this.router.navigate(['/denuncia/ac/crvirtual']);
+      document.body.scrollIntoView();
+    }, 100);
   }
 
   nextStageComplaint() {
-    this.router.navigate(['/denuncia/ac/crvirtual']);
+    setTimeout(() => {
+      this.router.navigate(['/denuncia/ac/crvirtual']);
+      document.body.scrollIntoView();
+    }, 100);
   }
 
 }

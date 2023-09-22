@@ -4,6 +4,7 @@
 @import "/node_modules/primeflex/primeflex.css";
 @import "./assets/theme/theme.css";
 @import "./assets/theme/variables.css";
+@import "./assets/fonts/fonts.css";
 
 // customer scrollbar
 
@@ -44,6 +45,10 @@
   box-sizing: border-box;
 }
 
+html, body {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-family);
   // font-family: 'Roboto', sans-serif;
@@ -57,3 +62,43 @@ body {
 // .p-dropdown {
 //   background: var(--cfm-secondary);
 // }
+
+.page-load {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--cfm-secondary);
+  pointer-events: none;
+  opacity: 0;
+  animation: loading 1s ease forwards;
+  .spinner {
+    width: 100px;
+    height: 100px;
+    border: 5px solid var(--cfm-primary);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s infinite linear;
+  }
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes loading {
+    0%, 60% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+}
