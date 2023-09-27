@@ -169,9 +169,9 @@ export class ComplaintComponent implements OnInit {
   checkData() {
     const elements = document.querySelectorAll('.fiend-text');
     
-    elements.forEach((element) => {
-      console.log(element.hasAttribute('required'));
-    });
+    // elements.forEach((element) => {
+    //   console.log(element.hasAttribute('required'));
+    // });
 
     var elementsArray: any[] = [];
 
@@ -206,7 +206,7 @@ export class ComplaintComponent implements OnInit {
       }
     }
 
-    console.log(this.dataChecked);
+    // console.log(this.dataChecked);
     
     this.dataChecked = true;
   }

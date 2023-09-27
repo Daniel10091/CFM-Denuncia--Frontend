@@ -1,5 +1,5 @@
 <div class="container">
-  <app-header *ngIf="validUrl && currentUrl != '/404'" [ufs]="ufs" [target]="target" [onChange]="changeUf"></app-header>
+  <app-header *ngIf="validUrl && currentUrl != '/404'"></app-header>
   <div class="container {{currentUrl == '/404' ? 'page-404' : ''}}" id="app-page">
     <router-outlet></router-outlet>
   </div>
@@ -7,9 +7,9 @@
   <div *ngIf="!pageLoaded" class="page-load">
     <div class="spinner"></div>
   </div>
-  <div class="scroll-to-top">
-    <a href="#app-page" (onClick)="scrollToTop($event)">
+  <div *ngIf="pageLoaded && !checkedUrl" class="scroll-to-top">
+    <button (click)="scrollToTop($event)">
       <i class="pi pi-angle-up"></i>
-    </a>
+    </button>
   </div>
 </div>

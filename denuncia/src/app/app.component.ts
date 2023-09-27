@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { UF } from './models/UF';
 import { PlatformLocation } from '@angular/common';
 
@@ -13,6 +13,10 @@ export class AppComponent implements OnInit {
   ufs: UF[] = [];
   target: UF;
 
+  urlParam1: string;
+  urlParam2: string;
+  urlParam3: string;
+  checkedUrl: boolean = false;
   currentUrl: string;
   validUrl: boolean;
 
@@ -26,12 +30,20 @@ export class AppComponent implements OnInit {
   ) {
     location.onPopState(() => {
       this.ngOnInit();
+      // console.log('pressed back!');
+    });
+    router.events.forEach((event) => {
+      if(event instanceof NavigationStart) {
+        this.checkedUrl = this.checkUrlIsComplaintPage(event.url);
+      }
+      // NavigationEnd
+      // NavigationCancel
+      // NavigationError
+      // RoutesRecognized
     });
   }
 
   async ngOnInit(): Promise<void> {
-    if (this.ufs.length == 0) await this.getUfs();
-
     this.currentUrl = window.location.pathname;
 
     setTimeout(() => {
@@ -48,49 +60,8 @@ export class AppComponent implements OnInit {
     }, 100);
   
     this.loadTemplate();
-  }
-  
-  /**
-   * Get UFs
-   */
-  async getUfs() {
-    await fetch('assets/data/ufs.json')
-    .then(res => res.json())
-    .then(json => {
-      this.ufs = json.ufs;
-    });
-  }
-  
-  /**
-   * Navigate to a specific location
-   *  
-   * @param {string} value
-   */
-  private navigateTo(value: any): void {
-    // this.target = value;
 
-    if (value && value.id != '/') {
-      this.router.navigate([`/denuncia/${value.id}`]);
-    } else if (value.id == '/') {
-      this.router.navigate([``]);
-    } else {
-      this.router.navigate([`/404`]);
-    }
-  }
-
-  /**
-   * Change UF
-   * 
-   * @param event 
-   */
-  changeUf = (event: any): void => {
-    setTimeout(() => {
-      this.navigateTo(event.value);
-    }, 50);
-
-    setTimeout(() => {
-      this.ngOnInit();
-    }, 100);
+    window.addEventListener('scroll', this.animeScroll);
   }
 
   /**
@@ -130,6 +101,17 @@ export class AppComponent implements OnInit {
   }
 
   /**
+   * Check URL parameters are form data
+   * 
+   * @param url 
+   * @returns 
+   */
+  checkUrlIsComplaintPage = (url: string): boolean => {
+    this.checkedUrl = url?.split('/')[1] == 'denuncia' && url?.split('/')[2]?.length == 2  && url?.split('/')[3] == 'crvirtual';
+    return this.checkedUrl;
+  }
+
+  /**
    * Load function
    * 
    * @param text 
@@ -154,11 +136,27 @@ export class AppComponent implements OnInit {
     });
   }
 
+  /**
+   * Scroll to top
+   * 
+   * @param $event
+   */
   scrollToTop = ($event: any) => {
-    console.log('scrollToTop');
-    
     $event.preventDefault();
     window.scrollTo(0, 0);
+  }
+  
+  /**
+   * Animate scroll
+   */
+  animeScroll = () => {
+    const button = document.querySelector('.scroll-to-top');
+    
+    if (window.scrollY > 700) {
+      button?.classList.add('is-show');
+    } else {
+      button?.classList.remove('is-show');
+    }
   }
   
 }

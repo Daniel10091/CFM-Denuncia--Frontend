@@ -29,6 +29,7 @@ import { HomeComponent } from './views/home/home.component';
 import { StatesModule } from './views/states/states.module';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { ComplaintComponent } from './views/complaint/complaint.component';
+import { UfSeletionComponent } from './components/uf-seletion/uf-seletion.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ComplaintComponent } from './views/complaint/complaint.component';
     // Components
     HeaderComponent,
     FooterComponent,
-    ComplaintComponent
+    ComplaintComponent,
+    UfSeletionComponent
   ],
   imports: [
     CommonModule,

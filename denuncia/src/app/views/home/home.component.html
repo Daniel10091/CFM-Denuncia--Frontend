@@ -1,48 +1,26 @@
-<!-- Denuncia de médicos -->
-<div class="container">
-  <div class="content">
+<div class="container relative flex flex-column align-items-center justify-content-center">
+  <div class="page-content flex justify-content-center">
     <div class="grid">
       <div class="col">
-        <div class="title">
-          <!-- <h1>Faça sua denúncia aqui!</h1> -->
-        </div>
-      </div>
-      <div class="col">
-        <div class="text">
-          <h2>Denúncia</h2>
-          <p>
-            A denúncia de médicos é um serviço que permite ao cidadão denunciar
-            médicos que tenham cometido infrações éticas ou que tenham exercido
-            ilegalmente a medicina.
-          </p>
-          <p>
-            A denúncia pode ser feita por qualquer pessoa, seja ela médico ou não.
-            Para isso, basta preencher o formulário abaixo e clicar em enviar.
-          </p>
-          <p>
-            A denúncia pode ser feita de forma anônima, mas é importante que o
-            denunciante forneça o maior número de informações possíveis, para que
-            o CRM possa apurar os fatos relatados.
-          </p>
-          <p>
-            O CRM não se responsabiliza por denúncias anônimas, uma vez que não
-            há como comprovar a veracidade dos fatos relatados.
-          </p>
+        <div class="content flex flex-column align-items-center justify-content-center gap-1">
+          <div class="title">
+            <h1>Denúncia</h1>
+          </div>
+          <div class="selection p-fluid">
+            <div class="selection-title text-center text-base">
+              <h3>Selecione seu estado</h3>
+            </div>
+            <div class="options mt-3">
+              <p-dropdown class="p-element p-inputwrapper ng-valid ng-touched p-inputwrapper-filled ng-dirty" [options]="ufs" [(ngModel)]="target" optionLabel="name" [filter]="true" filterBy="name" (onChange)="changeUf($event)"></p-dropdown>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="home-bg">
-    <img src="../../../assets/images/bg-home.jpg" alt="">
-    <!-- <img src="../../../assets/images/bg-home-removebg.png" alt=""> -->
+  <div class="home-bg absolute top-0 left-0 w-full h-full">
+    <img class=" w-full h-full" src="../../../assets/images/bg-home.jpg" alt="">
   </div>
-  <!-- <div class="grid">
-    <div class="col-md-12">
-      <div class="title">
-        <h1>Faça sua denúncia aqui!</h1>
-      </div>
-    </div>
-  </div> -->
 </div>
 
 <div class="page-load">
