@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UF } from 'src/app/models/UF';
 
@@ -17,10 +17,13 @@ export class HomeComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     if (this.ufs.length == 0) await this.getUfs();
 
+    this.saveParams(window.location.pathname);
 
     var target = localStorage.getItem('target');
     
-    if (target) {
+    console.log(target);
+    
+    if (target != null && target != undefined && target != 'undefined') {
       this.target = JSON.parse(target);
     } else {
       this.target = this.ufs[0];
@@ -68,6 +71,25 @@ export class HomeComponent implements OnInit {
     setTimeout(() => {
       this.ngOnInit();
     }, 100);
+  }
+
+  /**
+   * Transform URL params to object
+   * 
+   * @param urlParams 
+   */
+  private saveParams(urlParams: any): void {
+    if (urlParams == '/') {
+      this.target = this.ufs[0];
+      localStorage.setItem('target', JSON.stringify(this.ufs[0]));
+    } else {
+      this.ufs.filter((uf: UF) => {
+        if (uf.id == urlParams.split('/')[2]) {
+          this.target = uf;
+          localStorage.setItem('target', JSON.stringify(uf));
+        }
+      });
+    }
   }
 
 }

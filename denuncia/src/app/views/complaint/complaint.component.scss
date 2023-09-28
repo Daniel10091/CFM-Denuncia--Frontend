@@ -1,42 +1,21 @@
 $form-padding: 30px;
 
-.container {
-  display: flex;
-  justify-content: center;
-  padding-block: 3rem;
-  .form-content {
-    width: 80%;
-    background-color: var(--cfm-white);
-    box-shadow: 0 0 10px var(--cfm-gray);
-    border: 1px solid var(--cfm-gray);
-    border-radius: 10px;
-    .form {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      padding-inline: $form-padding;
-      padding-block: $form-padding;
-    }
-  }
+.container .form-content {
+  width: 80%;
+  background-color: var(--cfm-white);
+  box-shadow: 0 0 10px var(--cfm-gray);
+  border: 1px solid var(--cfm-gray);
 }
 
 .form-content .title {
-  padding-block: 20px;
-  padding-inline: $form-padding;
   border-bottom: 1px solid var(--cfm-gray-2);
   h2 {
-    text-transform: uppercase;
-    font-size: 1.2rem;
-    font-weight: 500;
     color: var(--cfm-font-gray);
   }
 }
 
 .section .subtitle {
-  margin-bottom: 1rem;
   h2 {
-    font-size: 1.3rem;
-    font-weight: 500;
     color: var(--cfm-font-gray);
   }
 }
@@ -44,7 +23,6 @@ $form-padding: 30px;
 .form-content .grid .field {
   label {
     font-size: 1.03rem;
-    font-weight: 500;
     color: var(--cfm-font-gray);
   }
   &.required {
@@ -64,20 +42,7 @@ $form-padding: 30px;
 }
 
 .form-content .buttons {
-  padding-inline: $form-padding;
-  padding-block: $form-padding;
   border-top: 1px solid var(--cfm-gray-2);
-  .grid [class^="col-"] {
-    display: flex;
-    gap: 10px;
-  }
-  .grid [class^="col-"]:nth-child(1), 
-  .grid [class^="col-"]:nth-child(2) {
-    justify-content: flex-start;
-  }
-  .grid [class^="col-"]:nth-child(3) {
-    justify-content: flex-end;
-  }
   .captcha {
     position: relative;
     &::after {
@@ -118,5 +83,13 @@ $form-padding: 30px;
   }
   100% {
     transform: translateX(0);
+  }
+}
+
+// 1200px
+
+@media only screen and (max-width: 1200px) {
+  .container .form-content {
+    width: 90%;
   }
 }

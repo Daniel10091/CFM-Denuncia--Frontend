@@ -10,9 +10,6 @@ import { PlatformLocation } from '@angular/common';
 })
 export class AppComponent implements OnInit {
 
-  ufs: UF[] = [];
-  target: UF;
-
   urlParam1: string;
   urlParam2: string;
   urlParam3: string;
@@ -47,8 +44,6 @@ export class AppComponent implements OnInit {
     this.currentUrl = window.location.pathname;
 
     setTimeout(() => {
-      this.saveParams(window.location.pathname);
-
       this.validUrl = 
         window.location.pathname.split('/')[1] == 'denuncia' && 
         window.location.pathname.split('/')[2]?.length == 2  && 
@@ -62,42 +57,6 @@ export class AppComponent implements OnInit {
     this.loadTemplate();
 
     window.addEventListener('scroll', this.animeScroll);
-  }
-
-  /**
-   * Transform URL params to object
-   * 
-   * @param urlParams 
-   */
-  private saveParams(urlParams: any): void {
-
-    //paramsToObject()
-    // var urlParamsArray: any[] = [];
-
-    // urlParams.split("/").reduce(function(obj, str, index) {
-    //   let strParts = str.split("/");
-    //   if (strParts[0]) {
-    //     obj[strParts[0].replace(/\s+/g, '')] = strParts[0].trim();
-    //     urlParamsArray.push(strParts[0].replace(/\s+/g, ''));
-    //   }
-    //   return obj;
-    // }, {});
-
-    // console.log('> urlParams: ' + urlParams);
-
-    if (urlParams == '/') {
-      this.target = this.ufs[0];
-      localStorage.setItem('target', JSON.stringify(this.ufs[0]));
-    } else {
-      this.ufs.filter((uf: UF) => {
-        if (uf.id == urlParams.split('/')[2]) {
-          this.target = uf;
-          localStorage.setItem('target', JSON.stringify(uf));
-        }
-      });
-    }
-
-    // this.urlParamsArray = urlParamsArray;
   }
 
   /**

@@ -8,7 +8,9 @@ import { Router } from '@angular/router';
 })
 export class ACComponent implements OnInit {
   
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+
+  }
 
   ngOnInit(): void {
   }

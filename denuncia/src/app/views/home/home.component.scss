@@ -15,18 +15,18 @@
   z-index: 10;
 }
 
+.container .title {
+  font-family: "Baloo 2", cursive;
+  color: var(--cfm-primary);
+  transition: all 0.3s ease-in-out;
+}
+
 .container .selection {
   width: 70%;
   .selection-title {
+    font-family: var(--InclusiveSans);
     color: var(--cfm-white);
   }
-}
-
-.container .title {
-  font-family: "Baloo 2", cursive;
-  font-size: 3rem;
-  color: var(--cfm-primary);
-  transition: all 0.3s ease-in-out;
 }
 
 // 1460
