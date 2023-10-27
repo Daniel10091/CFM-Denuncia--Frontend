@@ -15,6 +15,34 @@ export class ComplaintComponent implements OnInit {
   request: any;
   requestCode: string;
   captchaResolved: boolean = false;
+  
+  complaintData: any = {
+    name: '',
+    cpf: '',
+    patientName: '',
+    patientKinship: '',
+    patienteProfession: '',
+    age: '',
+    maritalStatus: '',
+    phone: '',
+    phoneCell: '',
+    email: '',
+    emailConfirm: '',
+    cep: '',
+    address: '',
+    numberOrComplement: '',
+    neighborhood: '',
+    city: '',
+    uf: '',
+    complement: '',
+    incidentOccurredCity: '',
+    incidentOccurredDate: '',
+    incidentOccurredDoctorName: '',
+    complaintDescription: '',
+    complaintEvidence: '',
+    witnessesRelation: '',
+    establishmentName: ''
+  }
 
   // Dados pessoais do denunciante
   name: string;
@@ -151,9 +179,13 @@ export class ComplaintComponent implements OnInit {
    */
   onModelChange(id: string, $event: any) {
     const input = document.querySelector(`#${id}`) as HTMLInputElement | null;
+
+    // console.log($event.match(/^[0-9]+$/));
+    console.log('0123456789'.includes($event));
+    
     
     if (input.hasAttribute('required')) {
-      if ($event == '' || $event == null || $event == undefined) {
+      if ($event == '' || $event == null || $event == undefined || $event.match(/^[0-9]+$/)) {
         input?.classList.add('invalid');
       } else {
         input?.classList.remove('invalid');
@@ -173,6 +205,8 @@ export class ComplaintComponent implements OnInit {
     //   console.log(element.hasAttribute('required'));
     // });
 
+    // console.log(this.complaintData);
+
     var elementsArray: any[] = [];
 
     elements.forEach((element) => {
@@ -181,11 +215,16 @@ export class ComplaintComponent implements OnInit {
       if (input != null && input.hasAttribute('required')) {
         if (input.value == '' || input.value == null || input.value == undefined) {
           elementsArray.push(element.id);
+          // console.log(elementsArray);
+          
+          console.log(input.value);
           return;
         } else {
           input.classList.remove('invalid');
+          
         }
       }
+      return;
     });
 
     for (let i = 0; i < elements.length; i++) {
@@ -194,7 +233,7 @@ export class ComplaintComponent implements OnInit {
       if (input.hasAttribute('required')) {
         if (input.value == '' || input.value == null || input.value == undefined) {
           this.showToastMessate('error', 'Erro', `Preencha o campo ${input.parentNode.querySelector('label').innerText}`);
-
+          
           input.scrollIntoView();
 
           setTimeout(() => {
@@ -205,6 +244,13 @@ export class ComplaintComponent implements OnInit {
         }
       }
     }
+
+    if (Object.values(this.complaintData).includes('')) {
+      this.showToastMessate('error', 'Erro', 'Preencha todos os campos obrigatórios');
+      return;
+    }
+
+    
 
     // console.log(this.dataChecked);
     
