@@ -17,7 +17,9 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputMaskModule } from 'primeng/inputmask';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 // NG
 import { RecaptchaModule } from "ng-recaptcha";
@@ -30,6 +32,7 @@ import { StatesModule } from './views/states/states.module';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { ComplaintComponent } from './views/complaint/complaint.component';
 import { UfSeletionComponent } from './components/uf-seletion/uf-seletion.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,7 @@ import { UfSeletionComponent } from './components/uf-seletion/uf-seletion.compon
     FormsModule,
     StatesModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     // Primeng
     DropdownModule,
     ButtonModule,
@@ -59,7 +63,9 @@ import { UfSeletionComponent } from './components/uf-seletion/uf-seletion.compon
     InputMaskModule,
     CalendarModule,
     InputTextareaModule,
+    FileUploadModule,
     ToastModule,
+    InputSwitchModule,
     // NG
     RecaptchaModule
   ],

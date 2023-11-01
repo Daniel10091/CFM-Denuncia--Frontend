@@ -12,6 +12,13 @@
   width: 10px;
   height: 10px;
   background: var(--cfm-gray);
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 ::-webkit-scrollbar-thumb {

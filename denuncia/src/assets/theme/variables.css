@@ -27,7 +27,29 @@
   /* CFM Default Sizes */
 
   --cfm-header-height: 120px;
+  --cfm-header-logo-height: var(--cfm-header-height) - 30%;
 
   --cfm-footer-height: 100px;
   
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx) {
+  :root {
+    --cfm-primary: #02986f;
+    --cfm-primary-light: #03bd8b;
+    --cfm-primary-dark: #00815a;
+    --cfm-secondary: #eaeef0;
+    --cfm-white: #ffffff;
+    --cfm-gray: #dddddd;
+    --cfm-gray-2: #e7e7e7;
+    --cfm-gray-dark: #6c757d;
+    --cfm-black: #000000;
+    --cfm-font-family: 'Roboto', sans-serif;
+    --cfm-font-gray: #535353;
+    --cfm-header-bg-color: var(--cfm-primary);
+    --cfm-footer-bg-color: var(--cfm-primary);
+    --cfm-header-height: 100px;
+    --cfm-header-logo-height: var(--cfm-header-height) - 10%;
+    --cfm-footer-height: 100px;
+  }
 }
