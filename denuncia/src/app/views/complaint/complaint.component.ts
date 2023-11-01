@@ -51,7 +51,7 @@ export class ComplaintComponent implements OnInit {
     number: '',
     neighborhood: '',
     city: '',
-    uf: '',
+    uf: null,
     complement: '',
     incidentOccurredCity: '',
     incidentOccurredDate: '',
@@ -83,7 +83,7 @@ export class ComplaintComponent implements OnInit {
   number: string;
   neighborhood: string;
   city: string;
-  uf: string;
+  uf: selectModel;
   complement: string;
   incidentOccurredCity: string;
   incidentOccurredDate: string;
@@ -115,7 +115,7 @@ export class ComplaintComponent implements OnInit {
     ];
 
     this.dropdownUf = [
-      { name: '--', code: '--' },
+      { name: 'Selecione', code: '' },
       { name: 'AC', code: 'AC' },
       { name: 'AL', code: 'AL' },
       { name: 'AM', code: 'AM' },
@@ -405,10 +405,10 @@ export class ComplaintComponent implements OnInit {
             this.complaintData.city = data.city;
             this.complaintData.uf = data.uf;
             this.complaintData.complement = data.complement;
-            // this.uf = {
-            //   name: data.uf,
-            //   code: data.uf
-            // };
+            this.complaintData.uf = {
+              name: data.uf,
+              code: data.uf
+            };
           },
         complete : () => {  },
         error : () => {  }
