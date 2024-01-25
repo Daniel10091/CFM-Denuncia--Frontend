@@ -1,7 +1,6 @@
+import { PlatformLocation } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
-import { UF } from './models/UF';
-import { PlatformLocation } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -29,6 +28,10 @@ export class AppComponent implements OnInit {
       this.ngOnInit();
       // console.log('pressed back!');
     });
+    location.onHashChange(() => {
+      this.ngOnInit();
+      console.log('hash changed!');
+    });
     router.events.forEach((event) => {
       if(event instanceof NavigationStart) {
         this.checkedUrl = this.checkUrlIsComplaintPage(event.url);
@@ -45,18 +48,28 @@ export class AppComponent implements OnInit {
 
     setTimeout(() => {
       this.validUrl = 
+        window.location.pathname.split('/')[1] == '404'      ||
         window.location.pathname.split('/')[1] == 'denuncia' && 
         window.location.pathname.split('/')[2]?.length == 2  && 
         window.location.pathname.split('/')[3] == 'crvirtual'|| 
         window.location.pathname.split('/')[3] == undefined  ||
         window.location.pathname == '/';
-      
+
+      console.log(this.validUrl);
+      console.log(this.currentUrl);
+
+      if (!this.checkUrlIsValid(this.currentUrl)) window.location.href = '/404';
+
       if (!this.validUrl) this.router.navigate([`/404`]);
     }, 100);
   
     this.loadTemplate();
 
     window.addEventListener('scroll', this.animeScroll);
+  }
+
+  checkUrlIsValid(url: string): boolean {
+    return url == '/404' || url == '/' || url == '' || this.checkUrlIsComplaintPage(url);
   }
 
   /**

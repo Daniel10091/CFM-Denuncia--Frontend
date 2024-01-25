@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './views/home/home.component';
-import { RouteErrorComponent } from './views/route-error/route-error.component';
-import { StatesModule } from './views/states/states.module';
-import { ComplaintComponent } from './views/complaint/complaint.component';
+// import { StatesModule } from './views/states/states.module';
+// import { RouteErrorComponent } from './views/route-error/route-error.component';
 
 const routes: Routes = [
   { 
@@ -13,23 +11,23 @@ const routes: Routes = [
   },
   { 
     path: '', 
-    component: HomeComponent 
+    loadChildren: () => import('./pages/inicio/inicio.module').then(m => m.InicioModule)
   },
-  { 
-    path: 'denuncia/:uf', 
-    loadChildren: () => StatesModule
-  },
-  {
-    path: 'denuncia/:uf/crvirtual',
-    component: ComplaintComponent
-  },
+  // { 
+  //   path: 'denuncia/:uf', 
+  //   // loadChildren: () => StatesModule
+  // },
+  // {
+  //   path: 'denuncia/:uf/crvirtual',
+  //   // loadChildren: () => import('./views/complaint/complaint.module').then(m => m.ComplaintModule)
+  // },
   {
     path: '**', 
     redirectTo: '404'
   },
   {
     path: '404', 
-    component: RouteErrorComponent
+    loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule)
   }
 ];
 
