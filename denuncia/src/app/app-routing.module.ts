@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-// import { StatesModule } from './views/states/states.module';
-// import { RouteErrorComponent } from './views/route-error/route-error.component';
+import { DenunciaModule } from './pages/denuncia/denuncia.module';
+import { EstadosModule } from './pages/estados/estados.module';
 
 const routes: Routes = [
   { 
@@ -13,18 +13,20 @@ const routes: Routes = [
     path: '', 
     loadChildren: () => import('./pages/inicio/inicio.module').then(m => m.InicioModule)
   },
-  // { 
-  //   path: 'denuncia/:uf', 
-  //   // loadChildren: () => StatesModule
-  // },
-  // {
-  //   path: 'denuncia/:uf/crvirtual',
-  //   // loadChildren: () => import('./views/complaint/complaint.module').then(m => m.ComplaintModule)
-  // },
-  {
-    path: '**', 
-    redirectTo: '404'
+  { 
+    path: 'denuncia', 
+    loadChildren: () => EstadosModule
   },
+  {
+    path: 'denuncia/:uf/crvirtual',
+    // loadChildren: () => import('./pages/denuncia/denuncia.module').then(m => m.DenunciaModule)
+    // component: DenunciaComponent
+    loadChildren: () => DenunciaModule
+  },
+  // {
+  //   path: '**', 
+  //   redirectTo: '404'
+  // },
   {
     path: '404', 
     loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule)

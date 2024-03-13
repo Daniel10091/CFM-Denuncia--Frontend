@@ -1,0 +1,51 @@
+.container {
+  width: 100%;
+  min-height: calc(100vh - (var(--cfm-header-height) + var(--cfm-footer-height)));
+}
+
+.container .home-bg {
+  filter: blur(8px);
+  img {
+    object-fit: cover;
+  }
+}
+
+.container .page-content {
+  width: 90%;
+  z-index: 10;
+}
+
+.container .selection {
+  width: 70%;
+  .selection-title {
+    color: var(--cfm-white);
+  }
+}
+
+.container .title {
+  font-family: "Baloo 2", cursive;
+  font-size: 3rem;
+  color: var(--cfm-primary);
+  transition: all 0.3s ease-in-out;
+}
+
+// 1460
+
+@media only screen and (max-width: 1460px) {
+  .container .content {
+    .grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+  }
+  .text {
+    width: 90%;
+  }
+}
+
+// 768
+
+@media only screen and (max-width: 768px) {
+  .container .title {
+    font-size: 2.6rem;
+  }
+}

@@ -1,6 +1,7 @@
 import { PlatformLocation } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
+import { UF } from './models/UF';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,8 @@ import { NavigationStart, Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  
+  ufs: UF[] = [];
 
   urlParam1: string;
   urlParam2: string;
@@ -44,6 +47,8 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+    if (this.ufs.length == 0) await this.getUfs();
+    
     this.currentUrl = window.location.pathname;
 
     setTimeout(() => {
@@ -55,8 +60,8 @@ export class AppComponent implements OnInit {
         window.location.pathname.split('/')[3] == undefined  ||
         window.location.pathname == '/';
 
-      console.log(this.validUrl);
-      console.log(this.currentUrl);
+      // console.log(this.validUrl);
+      // console.log(this.currentUrl);
 
       if (!this.checkUrlIsValid(this.currentUrl)) window.location.href = '/404';
 
@@ -67,9 +72,40 @@ export class AppComponent implements OnInit {
 
     window.addEventListener('scroll', this.animeScroll);
   }
+  
+  /**
+   * Get UFs
+   */
+  async getUfs() {
+    await fetch('assets/data/ufs.json')
+    .then(res => res.json())
+    .then(json => {
+      this.ufs = json.ufs;
+    });
+  }
 
+  /**
+   * Check URL is valid
+   * 
+   * @param url 
+   * @returns 
+   */
   checkUrlIsValid(url: string): boolean {
     return url == '/404' || url == '/' || url == '' || this.checkUrlIsComplaintPage(url);
+  }
+
+  /**
+   * Check UF is valid
+   * 
+   * @param currentUf 
+   * @returns 
+   */
+  checkUfIsValid = (currentUf: string): boolean => {
+    var validUf = null;
+    this.ufs.map((uf): any => {
+      if (uf.id == currentUf) validUf = uf;
+    });
+    return validUf != null;
   }
 
   /**
@@ -79,8 +115,9 @@ export class AppComponent implements OnInit {
    * @returns 
    */
   checkUrlIsComplaintPage = (url: string): boolean => {
-    this.checkedUrl = url?.split('/')[1] == 'denuncia' && url?.split('/')[2]?.length == 2  && url?.split('/')[3] == 'crvirtual';
-    return this.checkedUrl;
+    return this.checkUfIsValid(url?.split('/')[2]) &&
+           url?.split('/')[1] == 'denuncia' && url?.split('/')[2]?.length == 2 ||
+           url?.split('/')[1] == 'denuncia' && url?.split('/')[2]?.length == 2 && url?.split('/')[3] == 'crvirtual';
   }
 
   /**

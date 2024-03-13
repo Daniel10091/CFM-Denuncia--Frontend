@@ -1,0 +1,7 @@
+{
+  "name": "denuncia",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "custom"
+}
