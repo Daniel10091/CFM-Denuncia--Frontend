@@ -1,1 +1,146 @@
-<h1>Denuncia</h1>
+<div class="container flex justify-content-center py-6">
+  <div class="form-content border-round-xl transition-all transition-duration-300 transition-ease-in-out">
+    <div class="title py-3 px-5">
+      <h2 class="uppercase text-xl font-medium">Nova Denúncia</h2>
+    </div>
+    <div [formGroup]="form" class="form flex flex-column gap-5 p-5">
+
+      <div class="section">
+        <div class="subtitle mb-3">
+          <h2 class="text-2xl font-medium">Dados Pessoais do Denunciante</h2>
+        </div>
+        <div class="formgrid grid">
+          <div class="field p-fluid col-12 md:col-8 required">
+            <label for="name" class="font-medium">Nome Completo</label>
+            <input pInputText type="text" class="fiend-text" id="name" placeholder="Seu nome" (ngModelChange)="onModelChange('name', $event)" formControlName="name" [required]="true" />
+          </div>
+          <div class="field p-fluid col-12 md:col-4 required">
+            <label for="cpf" class="font-medium">CPF</label>
+            <input pInputText type="text" class="fiend-text" id="cpf" placeholder="Seu CPF" (ngModelChange)="onModelChange('cpf', $event)" formControlName="cpf" [required]="true" />
+          </div>
+          <div class="field p-fluid col-12 required">
+            <label for="patientName" class="font-medium">Nome do Paciente</label>
+            <input pInputText type="text" class="fiend-text" id="patientName" placeholder="Nome Completo do Paciente" (ngModelChange)="onModelChange('patientName', $event)" formControlName="patientName" [required]="true" />
+          </div>
+          <div class="field p-fluid col-12 md:col-6 required">
+            <label for="kinship" class="font-medium">Parentesco com o paciente</label>
+            <input pInputText type="text" class="fiend-text" id="kinship" placeholder="Quem estava com o paciente" (ngModelChange)="onModelChange('kinship', $event)" formControlName="patientKinship" [required]="true" />
+          </div>
+          <div class="field p-fluid col-12 md:col-6">
+            <label for="profession" class="font-medium">Profissão do paciente</label>
+            <input pInputText type="text" class="fiend-text" id="profession" placeholder="Profissão do Paciente" (ngModelChange)="onModelChange('profession', $event)" formControlName="patienteProfession" />
+          </div>
+          <div class="field p-fluid col-12 md:col-3 required">
+            <label for="age" class="font-medium">Idade</label>
+            <input pInputText type="text" class="fiend-text" id="age" placeholder="Sua Idade" (ngModelChange)="onModelChange('age', $event)" formControlName="age" [required]="true" />
+            <!-- <p-inputNumber inputId="minmax" mode="decimal" class="fiend-text" id="age" [min]="0" placeholder="Sua Idade" (ngModelChange)="onModelChange('age', $event)" formControlName="age" [required]="true"></p-inputNumber> -->
+          </div>
+          <div class="field p-fluid col-12 md:col-3 required">
+            <label for="maritalStatus" class="font-medium">Estado civil</label>
+            <input pInputText type="text" class="fiend-text" id="maritalStatus" placeholder="Seu Estado civil" (ngModelChange)="onModelChange('maritalStatus', $event)" formControlName="maritalStatus" [required]="true" />
+          </div>
+          <div class="field p-fluid col-12 md:col-3">
+            <label for="phone" class="font-medium">Telefone</label>
+            <p-inputMask mask="9999-9999" class="fiend-text" id="phone" placeholder="Seu Telefone" (ngModelChange)="onModelChange('phone', $event)" formControlName="phone" [required]="true"></p-inputMask>
+          </div>
+          <div class="field p-fluid col-12 md:col-3 required">
+            <label for="cellPhone" class="font-medium">Celular</label>
+            <p-inputMask mask="(99) 99999-9999" class="fiend-text" id="cellPhone" placeholder="Seu Celular" (ngModelChange)="onModelChange('cellPhone', $event)" formControlName="phoneCell" [required]="true"></p-inputMask>
+          </div>
+          <div class="field p-fluid col-12 md:col-6 required">
+            <label for="email" class="font-medium">Email</label>
+            <input pInputText type="text" class="fiend-text" id="email" placeholder="Seu Email" (ngModelChange)="onModelChange('email', $event)" formControlName="email" [required]="true" />
+          </div>
+          <div class="field p-fluid col-12 md:col-6 required">
+            <label for="emailConfirmation" class="font-medium">Confirmação do Email</label>
+            <input pInputText type="text" class="fiend-text" id="emailConfirmation" placeholder="Confirme Seu Email" (ngModelChange)="onModelChange('emailConfirmation', $event)" formControlName="emailConfirm" [required]="true" />
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="subtitle mb-3">
+          <h2 class="text-2xl font-medium">Endereço Residencial do Denunciante</h2>
+        </div>
+        <div class="formgrid grid">
+          <div class="field p-fluid col-12 md:col-3 required">
+            <label for="cep" class="font-medium">CEP</label>
+            <input pInputText type="text" class="fiend-text" id="cep" placeholder="Seu CEP" (ngModelChange)="onModelChange('cep', $event)" formControlName="cep" [required]="true" />
+          </div>
+          <div class="field p-fluid col-12 md:col-6 required">
+            <label for="address" class="font-medium">Endereço</label>
+            <input pInputText type="text" class="fiend-text" id="address" placeholder="Seu Endereço" (ngModelChange)="onModelChange('address', $event)" formControlName="address" [required]="true" />
+          </div>
+          <div class="field p-fluid col-12 md:col-3 required">
+            <label for="number" class="font-medium">Número</label>
+            <input pInputText pKeyFilter="int" class="fiend-text" id="number" placeholder="Número" (ngModelChange)="onModelChange('number', $event)" formControlName="numberOrComplement" [required]="true" />
+          </div>
+          <div class="field p-fluid col-12 md:col-3 required">
+            <label for="neighborhood" class="font-medium">Bairro</label>
+            <input pInputText type="text" class="fiend-text" id="neighborhood" placeholder="Seu CEP" (ngModelChange)="onModelChange('neighborhood', $event)" formControlName="neighborhood"  [required]="true"/>
+          </div>
+          <div class="field p-fluid col-12 md:col-6 required">
+            <label for="city" class="font-medium">Cidade</label>
+            <input pInputText type="text" class="fiend-text" id="city" placeholder="Cidade" (ngModelChange)="onModelChange('city', $event)" formControlName="city" [required]="true" />
+          </div>
+          <div class="field p-fluid col-12 md:col-3 required">
+            <label for="uf" class="font-medium">UF</label>
+            <input pInputText type="text" class="fiend-text" id="uf" placeholder="UF" (ngModelChange)="onModelChange('uf', $event)" formControlName="uf" [required]="true" />
+          </div>
+          <div class="field p-fluid col-12">
+            <label for="cityIncident" class="font-medium">Complemento</label>
+            <input pInputText type="text" class="fiend-text" id="cityIncident" placeholder="Complemento" (ngModelChange)="onModelChange('cityIncident', $event)" formControlName="complement" />
+          </div>
+          <div class="field p-fluid col-12 md:col-9 required">
+            <label for="complement" class="font-medium">Cidade em que ocorreu o fato</label>
+            <input pInputText type="text" class="fiend-text" id="complement" placeholder="Cidade onde ocorreu o fato" (ngModelChange)="onModelChange('complement', $event)" formControlName="incidentOccurredCity" [required]="true" />
+          </div>
+          <div class="field p-fluid col-12 md:col-3 required">
+            <label for="cityIncident" class="font-medium">Data do Fato</label>
+            <p-calendar dateFormat="dd.mm.yy" class="fiend-text" id="cityIncident" placeholder="Data do Fato" (ngModelChange)="onModelChange('cityIncident', $event)" formControlName="incidentOccurredDate" [showIcon]="true" [required]="true"></p-calendar>
+          </div>
+          <div class="field p-fluid col-12 required">
+            <label for="doctorName" class="font-medium">Nome(s) do(s) médico(s) envolvido(s) e CRM (se souber)</label>
+            <textarea rows="4" cols="30" pInputTextarea class="fiend-text" id="doctorName" (ngModelChange)="onModelChange('doctorName', $event)" formControlName="incidentOccurredDoctorName" [autoResize]="true" [required]="true"></textarea>
+          </div>
+          <div class="field p-fluid col-12 required">
+            <label for="descriptionComplaint" class="font-medium">Descrição da denúncia</label>
+            <textarea rows="10" cols="30" pInputTextarea class="fiend-text" id="descriptionComplaint" (ngModelChange)="onModelChange('descriptionComplaint', $event)" formControlName="complaintDescription" [autoResize]="true" [required]="true"></textarea>
+          </div>
+          <div class="field p-fluid col-12">
+            <label for="indications" class="font-medium">Indicação das provas e documentos apresentados na denúncia</label>
+            <textarea rows="10" cols="30" pInputTextarea class="fiend-text" id="indications" (ngModelChange)="onModelChange('indications', $event)" formControlName="complaintEvidence" [autoResize]="true"></textarea>
+          </div>
+          <div class="field p-fluid col-12">
+            <label for="relation" class="font-medium">Relação das testemunhas (nome, endereço completo, telefone, e-mail e CPF)</label>
+            <textarea rows="10" cols="30" pInputTextarea class="fiend-text" id="relation" (ngModelChange)="onModelChange('relation', $event)" formControlName="witnessesRelation" [autoResize]="true"></textarea>
+          </div>
+          <div class="field p-fluid col-12 required">
+            <label for="establishmentName" class="font-medium">Nome do Estabelecimento (Hospital, Clínica, Consultório, UPA, etc.) em que houve o atendimento</label>
+            <input pInputText type="text" class="fiend-text" id="establishmentName" placeholder="Nome do Estabelecimento (Hospital, Clínica, Consultório, UPA, etc.) em que houve o atendimento" (ngModelChange)="onModelChange('establishmentName', $event)" formControlName="establishmentName" [required]="true" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="buttons p-5">
+      <div class="grid">
+        <div class="col-12 flex gap-3 justify-content-start">
+          <div #captcha class="captcha" id="captcha">
+            <!-- <re-captcha (resolved)="resolved($event)" (errored)="errored($event)" errorMode="handled" siteKey="6LepbP0UAAAAAJ4txXicgIKYE_GRgP6djVysEAi3"></re-captcha> -->
+          </div>
+        </div>
+        <div class="col-12 md:col-6 flex gap-3 justify-content-start">
+          <p-button label="Cancelar" styleClass="p-button-secondary" (onClick)="cancel()"></p-button>
+          <p-button label="{{sendButtonLabel}}" styleClass="p-button-primary" (onClick)="send()"></p-button> <!-- [disabled]="form.invalid" -->
+        </div>
+        <div class="col-12 md:col-6 flex gap-3 justify-content-center md:justify-content-end mt-3 md:mt-0">
+          <p-button label="Enviar documento assinado" icon="pi pi-check" iconPos="right" styleClass="p-button-sm p-button-rounded p-button-warning" (onClick)="uploadFile($event)"></p-button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p-toast></p-toast>
+</div>
+
+<div class="page-load">
+  <div class="spinner"></div>
+</div>

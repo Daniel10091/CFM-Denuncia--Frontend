@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { DenunciaRoutingModule } from './denuncia-routing.module';
 import { DenunciaComponent } from './denuncia.component';
@@ -25,6 +25,7 @@ import { RecaptchaModule } from "ng-recaptcha";
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     DenunciaRoutingModule,
     // Primeng
     DropdownModule,

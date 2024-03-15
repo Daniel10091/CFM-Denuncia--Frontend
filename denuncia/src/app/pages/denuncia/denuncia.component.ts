@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 
@@ -6,8 +7,7 @@ import { MessageService } from 'primeng/api';
   selector: 'app-denuncia',
   templateUrl: './denuncia.component.html',
   styleUrls: ['./denuncia.component.scss'],
-  // standalone: true,
-  // providers: [MessageService]
+  providers: [MessageService]
 })
 export class DenunciaComponent implements OnInit {
 
@@ -16,71 +16,165 @@ export class DenunciaComponent implements OnInit {
   request: any;
   requestCode: string;
   captchaResolved: boolean = false;
+
+  form: FormGroup = new FormGroup({});
   
-  complaintData: any = {
-    name: '',
-    cpf: '',
-    patientName: '',
-    patientKinship: '',
-    patienteProfession: '',
-    age: '',
-    maritalStatus: '',
-    phone: '',
-    phoneCell: '',
-    email: '',
-    emailConfirm: '',
-    cep: '',
-    address: '',
-    numberOrComplement: '',
-    neighborhood: '',
-    city: '',
-    uf: '',
-    complement: '',
-    incidentOccurredCity: '',
-    incidentOccurredDate: '',
-    incidentOccurredDoctorName: '',
-    complaintDescription: '',
-    complaintEvidence: '',
-    witnessesRelation: '',
-    establishmentName: ''
-  }
+  // complaintData: any = {
+  //   name: '',
+  //   cpf: '',
+  //   patientName: '',
+  //   patientKinship: '',
+  //   patienteProfession: '',
+  //   age: '',
+  //   maritalStatus: '',
+  //   phone: '',
+  //   phoneCell: '',
+  //   email: '',
+  //   emailConfirm: '',
+  //   cep: '',
+  //   address: '',
+  //   numberOrComplement: '',
+  //   neighborhood: '',
+  //   city: '',
+  //   uf: '',
+  //   complement: '',
+  //   incidentOccurredCity: '',
+  //   incidentOccurredDate: '',
+  //   incidentOccurredDoctorName: '',
+  //   complaintDescription: '',
+  //   complaintEvidence: '',
+  //   witnessesRelation: '',
+  //   establishmentName: ''
+  // }
 
-  // Dados pessoais do denunciante
-  name: string;
-  cpf: string;
-  patientName: string;
-  patientKinship: string;
-  patienteProfession: string;
-  age: number;
-  maritalStatus: string;
-  phone: string;
-  phoneCell: string;
-  email: string;
-  emailConfirm: string;
+  // // Dados pessoais do denunciante
+  // name: string;
+  // cpf: string;
+  // patientName: string;
+  // patientKinship: string;
+  // patienteProfession: string;
+  // age: number;
+  // maritalStatus: string;
+  // phone: string;
+  // phoneCell: string;
+  // email: string;
+  // emailConfirm: string;
 
-  // Endereço residencial do denunciante
-  cep: string;
-  address: string;
-  numberOrComplement: string;
-  neighborhood: string;
-  city: string;
-  uf: string;
-  complement: string;
-  incidentOccurredCity: string;
-  incidentOccurredDate: string;
-  incidentOccurredDoctorName: string;
-  complaintDescription: string;
-  complaintEvidence: string;
-  witnessesRelation: string;
-  establishmentName: string;
+  // // Endereço residencial do denunciante
+  // cep: string;
+  // address: string;
+  // numberOrComplement: string;
+  // neighborhood: string;
+  // city: string;
+  // uf: string;
+  // complement: string;
+  // incidentOccurredCity: string;
+  // incidentOccurredDate: string;
+  // incidentOccurredDoctorName: string;
+  // complaintDescription: string;
+  // complaintEvidence: string;
+  // witnessesRelation: string;
+  // establishmentName: string;
 
   dataChecked: boolean = false;
 
-  // constructor(private router: Router, private messageService: MessageService) { }
+  @ViewChild('captcha')
+  recaptcha!: ElementRef<HTMLDivElement>;
+
+  constructor(private router: Router, private messageService: MessageService, private ngZone: NgZone) {
+    this.renderizarReCaptcha();
+  }
 
   ngOnInit(): void {
-    alert('Esta página está em desenvolvimento');
+    this.form = this.createForm();
     localStorage.removeItem('request code');
+  }
+
+  createForm(): FormGroup {
+    return new FormGroup({
+      name: new FormControl(null, Validators.required),
+      cpf: new FormControl(null, Validators.required),
+      patientName: new FormControl(null, Validators.required),
+      patientKinship: new FormControl(null, Validators.required),
+      patienteProfession: new FormControl(null),
+      age: new FormControl(null, Validators.required),
+      maritalStatus: new FormControl(null, Validators.required),
+      phone: new FormControl(null),
+      phoneCell: new FormControl(null, Validators.required),
+      email: new FormControl(null, [Validators.email, Validators.required]),
+      emailConfirm: new FormControl(null, Validators.required),
+      cep: new FormControl(null, Validators.required),
+      address: new FormControl(null, Validators.required),
+      numberOrComplement: new FormControl(null, Validators.required),
+      neighborhood: new FormControl(null, Validators.required),
+      city: new FormControl(null, Validators.required),
+      uf: new FormControl(null, Validators.required),
+      complement: new FormControl(null),
+      incidentOccurredCity: new FormControl(null, Validators.required),
+      incidentOccurredDate: new FormControl(null, Validators.required),
+      incidentOccurredDoctorName: new FormControl(null, Validators.required),
+      complaintDescription: new FormControl(null, Validators.required),
+      complaintEvidence: new FormControl(null),
+      witnessesRelation: new FormControl(null),
+      establishmentName: new FormControl(null, Validators.required),
+      complaintEvidenceFiles: new FormControl(null, Validators.required),
+    });
+  }
+
+  // *
+  // * Quando adicionamos o script do reCAPTCHA no
+  // * index.html, o script cria uma variável de
+  // * escopo global chamada "grecaptcha".
+  // * Então para pegar sua referência podemos
+  // * acessá-la através do "window"
+  // *
+  get grecaptcha(): any {
+    const w = window as any;
+    return w['grecaptcha'];
+  }
+
+  renderizarReCaptcha() {
+    // *
+    // * Para evitar que change detection seja disparado
+    // * cada vez que o setTimeout for executado,
+    // * executamos essa recorrência fora da zona
+    // * do Angular, por isso o usamos o runOutsideAngular
+    // *
+    // * Para saber mais sobre change detection:
+    // * https://consolelog.com.br/como-funciona-change-detection-angular/
+    // * 
+    this.ngZone.runOutsideAngular(() => {
+      // *
+      // * Se o "grecaptcha" ainda não foi carregado ou
+      // * o elemento <div> onde o reCAPTCHA será
+      // * renderizado ainda não foi construído,
+      // * aguardamos algum tempo e executamos novamente
+      // * este método:
+      // *
+      if (!this.grecaptcha || !this.recaptcha) {
+        setTimeout(() => {
+          this.renderizarReCaptcha();
+        }, 500);
+
+        return;
+      }
+
+      // * Se chegou aqui é porque o recaptcha já está
+      // * carregado. Então solicitamos sua renderização
+      // * na tela.
+      const idElemento = this.recaptcha.nativeElement.getAttribute('id');
+
+      this.grecaptcha.render(idElemento, {
+        sitekey: '6LepbP0UAAAAAJ4txXicgIKYE_GRgP6djVysEAi3',
+        callback: (response: string) => {
+          // * Este método é chamado quando o usuário
+          // * resolver o desafio do CAPTCHA
+          this.ngZone.run(() => {
+            this.form.get('recaptcha')?.setValue(response);
+          });
+        },
+      });
+    });
   }
 
   /**
@@ -101,6 +195,17 @@ export class DenunciaComponent implements OnInit {
    */
   errored(e: any) {
     console.warn(`reCAPTCHA error encountered`);
+  }
+
+  uploadFile(event: any) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (e: any) => {
+      this.form.get('complaintEvidenceFiles')?.setValue(e.target.result);
+    }
+
+    reader.readAsDataURL(file);
   }
 
   /**
@@ -161,7 +266,7 @@ export class DenunciaComponent implements OnInit {
    * @options [ success ], [ info ], [ warn ], [ error ]
    */
   showToastMessate(severity: string, summary: string, detail: string) {
-    // this.messageService.add({ severity: severity, summary: summary, detail: detail });
+    this.messageService.add({ severity: severity, summary: summary, detail: detail });
   }
 
   /**
@@ -217,7 +322,6 @@ export class DenunciaComponent implements OnInit {
       if (input != null && input.hasAttribute('required')) {
         if (input.value == '' || input.value == null || input.value == undefined) {
           elementsArray.push(element.id);
-          // console.log(elementsArray);
           
           console.log(input.value);
           return;
@@ -247,14 +351,10 @@ export class DenunciaComponent implements OnInit {
       }
     }
 
-    if (Object.values(this.complaintData).includes('')) {
+    if (Object.values(this.form.value).includes('')) {
       this.showToastMessate('error', 'Erro', 'Preencha todos os campos obrigatórios');
       return;
     }
-
-    
-
-    // console.log(this.dataChecked);
     
     this.dataChecked = true;
   }

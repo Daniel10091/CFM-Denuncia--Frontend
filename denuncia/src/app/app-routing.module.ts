@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { DenunciaModule } from './pages/denuncia/denuncia.module';
 import { EstadosModule } from './pages/estados/estados.module';
+import { DenunciaComponent } from './pages/denuncia/denuncia.component';
 
 const routes: Routes = [
   { 
@@ -20,8 +21,8 @@ const routes: Routes = [
   {
     path: 'denuncia/:uf/crvirtual',
     // loadChildren: () => import('./pages/denuncia/denuncia.module').then(m => m.DenunciaModule)
-    // component: DenunciaComponent
-    loadChildren: () => DenunciaModule
+    component: DenunciaComponent
+    // loadChildren: () => DenunciaModule
   },
   // {
   //   path: '**', 
